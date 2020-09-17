@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-const NewGrudge = ({ onSubmit }) => {
+// store
+import { GrudgeContext } from '../store/grudges.store';
+
+// constants
+import { ADD_GRUDGE } from '../constants.json';
+
+const NewGrudge = () => {
+  const { dispatch } = useContext(GrudgeContext);
+
   const [person, setPerson] = useState('');
   const [reason, setReason] = useState('');
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.preventDefault();
-    onSubmit({ person, reason });
+    dispatch({
+      type: ADD_GRUDGE,
+      data: {
+        person,
+        reason
+      }
+    });
   };
 
   return (
@@ -16,14 +30,14 @@ const NewGrudge = ({ onSubmit }) => {
         placeholder="Person"
         type="text"
         value={person}
-        onChange={event => setPerson(event.target.value)}
+        onChange={(event) => setPerson(event.target.value)}
       />
       <input
         className="NewGrudge-input"
         placeholder="Reason"
         type="text"
         value={reason}
-        onChange={event => setReason(event.target.value)}
+        onChange={(event) => setReason(event.target.value)}
       />
       <input className="NewGrudge-submit button" type="submit" />
     </form>
