@@ -4,11 +4,13 @@ import React, { useState, useContext } from 'react';
 import { GrudgeContext } from '../../store/grudges.store';
 
 // constants
-import { ADD_GRUDGE } from '../../constants.json';
+import { ADD_GRUDGE, UNDO_GRUDGE, REDO_GRUDGE } from '../../constants.json';
 import {
+  PreviousStyled,
   NewGrudgeStyled,
   InputStyled,
-  SubmitStyled
+  SubmitStyled,
+  NextStyled
 } from './new-grudge.styled';
 
 const NewGrudge = () => {
@@ -28,8 +30,14 @@ const NewGrudge = () => {
     });
   };
 
+  const undoChange = () => dispatch({ type: UNDO_GRUDGE });
+  const redoChange = () => dispatch({ type: REDO_GRUDGE });
+
   return (
     <NewGrudgeStyled onSubmit={handleChange}>
+      <PreviousStyled type="button" onClick={undoChange}>
+        &laquo;
+      </PreviousStyled>
       <InputStyled
         placeholder="Person"
         type="text"
@@ -43,6 +51,9 @@ const NewGrudge = () => {
         onChange={(event) => setReason(event.target.value)}
       />
       <SubmitStyled className="button" type="submit" />
+      <NextStyled type="button" onClick={redoChange}>
+        &raquo;
+      </NextStyled>
     </NewGrudgeStyled>
   );
 };
