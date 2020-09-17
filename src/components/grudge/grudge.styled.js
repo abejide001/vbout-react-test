@@ -7,12 +7,12 @@ export const GrudgeStyled = styled.article`
 `;
 GrudgeStyled.displayName = 'GrudgeStyled';
 
-export const H3Styled = styled.article`
+export const H3Styled = styled.h3`
   margin-top: 0;
 `;
 H3Styled.displayName = 'H3Styled';
 
-export const ForgivenStyled = styled.article`
+export const ForgivenStyled = styled.label`
   color: #f4466e;
 `;
 ForgivenStyled.displayName = 'ForgivenStyled';
