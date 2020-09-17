@@ -1,10 +1,15 @@
 import React, { useState, useContext } from 'react';
 
 // store
-import { GrudgeContext } from '../store/grudges.store';
+import { GrudgeContext } from '../../store/grudges.store';
 
 // constants
-import { ADD_GRUDGE } from '../constants.json';
+import { ADD_GRUDGE } from '../../constants.json';
+import {
+  NewGrudgeStyled,
+  InputStyled,
+  SubmitStyled
+} from './new-grudge.styled';
 
 const NewGrudge = () => {
   const { dispatch } = useContext(GrudgeContext);
@@ -24,23 +29,21 @@ const NewGrudge = () => {
   };
 
   return (
-    <form className="NewGrudge" onSubmit={handleChange}>
-      <input
-        className="NewGrudge-input"
+    <NewGrudgeStyled onSubmit={handleChange}>
+      <InputStyled
         placeholder="Person"
         type="text"
         value={person}
         onChange={(event) => setPerson(event.target.value)}
       />
-      <input
-        className="NewGrudge-input"
+      <InputStyled
         placeholder="Reason"
         type="text"
         value={reason}
         onChange={(event) => setReason(event.target.value)}
       />
-      <input className="NewGrudge-submit button" type="submit" />
-    </form>
+      <SubmitStyled className="button" type="submit" />
+    </NewGrudgeStyled>
   );
 };
 

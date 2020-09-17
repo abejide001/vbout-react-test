@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
-import Grudge from './Grudge';
+import Grudge from '../grudge/grudge';
 
 // store
-import { GrudgeContext } from '../store/grudges.store';
+import { GrudgeContext } from '../../store/grudges.store';
 
 // constants
-import { UPDATE_GRUDGE } from '../constants.json';
+import { UPDATE_GRUDGE } from '../../constants.json';
+
+// styles
+import { GrudgesStyled } from './grudges.styled';
 
 const Grudges = () => {
   const {
@@ -22,12 +25,12 @@ const Grudges = () => {
     });
   };
   return (
-    <section className="Grudges">
+    <GrudgesStyled>
       <h2>Grudges ({grudges.length})</h2>
       {grudges.map((grudge) => (
         <Grudge key={grudge.id} grudge={grudge} onForgive={onForgive} />
       ))}
-    </section>
+    </GrudgesStyled>
   );
 };
 

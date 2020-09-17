@@ -1,7 +1,12 @@
 import id from 'uuid/v4';
 
 // constants
-import { ADD_GRUDGE, UPDATE_GRUDGE } from '../constants.json';
+import {
+  ADD_GRUDGE,
+  UPDATE_GRUDGE,
+  UNDO_GRUDGE,
+  REDO_GRUDGE
+} from '../constants.json';
 
 export const grudgeActions = (state, { data, type }) => {
   switch (type) {
@@ -24,6 +29,12 @@ export const grudgeActions = (state, { data, type }) => {
       return Object.assign({}, state, {
         grudges: updatedGrudges
       });
+    }
+    case UNDO_GRUDGE: {
+      // TODO
+    }
+    case REDO_GRUDGE: {
+      // TODO
     }
     default:
       return state;

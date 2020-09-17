@@ -1,10 +1,13 @@
 import React from 'react';
 
+// styles
+import { GrudgeStyled } from './grudge.styled';
+
 const Grudge = ({ grudge, onForgive }) => {
   const forgive = () => onForgive(grudge.id);
 
   return (
-    <article className="Grudge">
+    <GrudgeStyled>
       <h3>{grudge.person}</h3>
       <p>{grudge.reason}</p>
       <div className="Grudge-controls">
@@ -13,7 +16,7 @@ const Grudge = ({ grudge, onForgive }) => {
           Forgiven
         </label>
       </div>
-    </article>
+    </GrudgeStyled>
   );
 };
 

@@ -2,5 +2,7 @@
 import initialGrudges from '../initialState';
 
 export default {
-  grudges: initialGrudges
+  pastGrudges: [],
+  grudges: initialGrudges,
+  futureGrudges: []
 };

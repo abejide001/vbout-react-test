@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { GrudgeProvider } from './store/grudges.store';
-import Application from './Application';
+import Application from './components/application';
 
 import './styles.css';
 
