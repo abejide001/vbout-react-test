@@ -1,4 +1,7 @@
 import React, { useContext } from 'react';
+import * as R from 'ramda';
+
+// components
 import Grudge from '../grudge/grudge';
 
 // store
@@ -12,9 +15,11 @@ import { GrudgesStyled } from './grudges.styled';
 
 const Grudges = () => {
   const {
-    state: { grudges = [] },
+    state: { grudgesState = [], currentIndex = 0 },
     dispatch
   } = useContext(GrudgeContext);
+
+  const grudges = R.pathOr([], [currentIndex - 1], grudgesState);
 
   const onForgive = (id) => {
     dispatch({
@@ -25,12 +30,14 @@ const Grudges = () => {
     });
   };
   return (
-    <GrudgesStyled>
+    <>
       <h2>Grudges ({grudges.length})</h2>
-      {grudges.map((grudge) => (
-        <Grudge key={grudge.id} grudge={grudge} onForgive={onForgive} />
-      ))}
-    </GrudgesStyled>
+      <GrudgesStyled>
+        {grudges.map((grudge) => (
+          <Grudge key={grudge.id} grudge={grudge} onForgive={onForgive} />
+        ))}
+      </GrudgesStyled>
+    </>
   );
 };
 

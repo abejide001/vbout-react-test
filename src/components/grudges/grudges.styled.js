@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const GrudgesStyled = styled.article``;
+export const GrudgesStyled = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+`;
 GrudgesStyled.displayName = 'GrudgesStyled';
 
 export const SearchTermStyled = styled.article`

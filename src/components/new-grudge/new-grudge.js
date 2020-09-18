@@ -14,7 +14,10 @@ import {
 } from './new-grudge.styled';
 
 const NewGrudge = () => {
-  const { dispatch } = useContext(GrudgeContext);
+  const {
+    state: { grudgesState = [], currentIndex = 0 },
+    dispatch
+  } = useContext(GrudgeContext);
 
   const [person, setPerson] = useState('');
   const [reason, setReason] = useState('');
@@ -35,7 +38,11 @@ const NewGrudge = () => {
 
   return (
     <NewGrudgeStyled onSubmit={handleChange}>
-      <PreviousStyled type="button" onClick={undoChange}>
+      <PreviousStyled
+        type="button"
+        onClick={undoChange}
+        disabled={currentIndex <= grudgesState.length}
+      >
         &laquo;
       </PreviousStyled>
       <InputStyled
@@ -51,7 +58,11 @@ const NewGrudge = () => {
         onChange={(event) => setReason(event.target.value)}
       />
       <SubmitStyled className="button" type="submit" />
-      <NextStyled type="button" onClick={redoChange}>
+      <NextStyled
+        type="button"
+        onClick={redoChange}
+        disabled={currentIndex >= grudgesState.length}
+      >
         &raquo;
       </NextStyled>
     </NewGrudgeStyled>
