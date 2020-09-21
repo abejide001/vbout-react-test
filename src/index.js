@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Application from './Application';
+import { GrudgeProvider } from './store/grudges.store';
+import Application from './components/application';
 
 import './styles.css';
 
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(<Application />, rootElement);
+ReactDOM.render(
+  <GrudgeProvider>
+    <Application />
+  </GrudgeProvider>,
+  rootElement
+);
