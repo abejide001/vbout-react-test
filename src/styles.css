@@ -79,3 +79,32 @@ input[type='submit'].full-width {
 .NewGrudge-input {
   width: 100%;
 }
+.undobutton {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+  padding-top: 2px;
+  cursor: pointer;
+}
+.redobutton {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+  padding-top: 2px;
+  cursor: pointer;
+}
+#previous {
+  background-color: red;
+  color: #f8f7f8;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+#next {
+  background-color: #f8f7f8;
+  color: gray;
+  font-size: 2.5em;
+}

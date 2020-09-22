@@ -1,34 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 
 import id from 'uuid/v4';
-
+import reducer from "./reducer"
 import Grudges from './Grudges';
 import NewGrudge from './NewGrudge';
 
 import initialState from './initialState';
 
 const Application = () => {
-  const [grudges, setGrudges] = useState(initialState);
+  let [{ history, hIndex }, dispatch] = useReducer
+    (reducer, { grudges: initialState, hIndex: 0, history: [{ grudges: initialState }] })
+
+  let [cg, setCG] = useState(history[hIndex].grudges)
+
+  useEffect(() => {
+    setCG(history[hIndex].grudges)
+  }, [hIndex]);
 
   const addGrudge = (grudge) => {
     grudge.id = id();
     grudge.forgiven = false;
-    setGrudges([grudge, ...grudges]);
+    dispatch({ type: "set-grudge", grudge })
   };
 
   const toggleForgiveness = (id) => {
-    setGrudges(
-      grudges.map((grudge) => {
-        if (grudge.id !== id) return grudge;
-        return { ...grudge, forgiven: !grudge.forgiven };
-      })
-    );
+    dispatch({ type: "toggle-forgiveness", id })
   };
 
   return (
     <div className="Application">
       <NewGrudge onSubmit={addGrudge} />
-      <Grudges grudges={grudges} onForgive={toggleForgiveness} />
+      <div className="undobutton" id="previous" onClick={() => dispatch({ type: "undo" })}>&lt;</div>
+      <div className="redobutton" id="next" onClick={() => dispatch({ type: "redo" })}>&gt;</div>
+      <Grudges grudges={cg} onForgive={toggleForgiveness} />
     </div>
   );
 };

@@ -15,6 +15,7 @@ const NewGrudge = ({ onSubmit }) => {
         className="NewGrudge-input"
         placeholder="Person"
         type="text"
+        required
         value={person}
         onChange={event => setPerson(event.target.value)}
       />
@@ -22,6 +23,7 @@ const NewGrudge = ({ onSubmit }) => {
         className="NewGrudge-input"
         placeholder="Reason"
         type="text"
+        required
         value={reason}
         onChange={event => setReason(event.target.value)}
       />
